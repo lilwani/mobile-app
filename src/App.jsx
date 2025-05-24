@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import AppLayout from './features/UI/AppLayout'
-import Login from './features/users/Login'
+import Login, { action as loginAction } from './features/users/Login'
 import ErrorElement from './features/UI/ErrorElement'
 import SignUp from './features/users/SignUp'
 import Product from './features/products/Product'
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
                         path: 'login',
                         element: <Login />,
                         errorElement: <ErrorElement />,
+                        action: loginAction,
                     },
                     {
                         path: 'signup',
@@ -48,7 +49,11 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-    return <RouterProvider router={router} />
+    return (
+        <div>
+            <RouterProvider router={router} />
+        </div>
+    )
 }
 
 export default App
