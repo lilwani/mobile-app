@@ -1,5 +1,17 @@
 import React from 'react'
+import { PhoneArrowDownLeftIcon } from '@heroicons/react/16/solid'
+import User from '../users/User'
 
 export default function Header() {
-    return <div className="">I am Header</div>
+    return (
+        <header className="flex flex-row justify-between space-x-3 w-full px-4 bg-gray-500 border-2 rounded-xl py-4">
+            <div className="flex space-x-4 ">
+                <PhoneArrowDownLeftIcon className="h-10 w-10 text-blue-400" />
+                <p className="font-serif text-4xl tracking-wide text-white">
+                    Mobile Cart
+                </p>
+            </div>
+            <User />
+        </header>
+    )
 }

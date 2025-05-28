@@ -7,10 +7,12 @@ const initialState = {
 }
 
 const productsSlice = createSlice({
-    name: 'users',
+    name: 'products',
     initialState: initialState,
     reducers: {
-        getAllProducts: (state, action) => {},
+        getAllProducts: (state, action) => {
+            state.products = [...action.payload]
+        },
     },
 })
 

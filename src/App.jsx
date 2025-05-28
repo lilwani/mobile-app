@@ -5,7 +5,7 @@ import Login, { action as loginAction } from './features/users/Login'
 import ErrorElement from './features/UI/ErrorElement'
 import SignUp from './features/users/SignUp'
 import Product from './features/products/Product'
-import Menu from './features/products/Menu'
+import Menu, { loader as getAllProducts } from './features/products/Menu'
 
 const router = createBrowserRouter([
     {
@@ -36,6 +36,7 @@ const router = createBrowserRouter([
                         path: 'menu',
                         element: <Menu />,
                         errorElement: <ErrorElement />,
+                        loader: getAllProducts,
                     },
                     {
                         path: ':pId',
