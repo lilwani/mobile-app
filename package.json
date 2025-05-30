@@ -9,7 +9,8 @@
         "build": "vite build",
         "lint": "eslint .",
         "preview": "vite preview",
-        "postinstall": "flowbite-react patch"
+        "postinstall": "flowbite-react patch",
+        "start-backend": "cd server && nodemon src/index.js"
     },
     "dependencies": {
         "@heroicons/react": "^2.2.0",
@@ -35,6 +36,7 @@
         "eslint-plugin-react-hooks": "^5.2.0",
         "eslint-plugin-react-refresh": "^0.4.19",
         "globals": "^16.0.0",
+        "nodemon": "^3.1.10",
         "postcss": "^8.5.3",
         "vite": "^6.3.5"
     }
