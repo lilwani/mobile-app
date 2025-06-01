@@ -1,10 +1,30 @@
-import axios from 'axios'
+import axios from 'axios';
+import { DEV_URL } from '../constants';
 
 export async function userLogin(data) {
-    const url = 'http://localhost:4040/users/login'
-    const header = {
-        'content-type': 'application/json',
+    try {
+        const url = `${DEV_URL}/users/login`;
+        const header = {
+            'content-type': 'application/json',
+        };
+        const res = await axios.post(url, data, header);
+        return res;
+    } catch (error) {
+        console.error(`userApiService/userLogin: Error occured : ${error}`);
+        return null;
     }
-    const res = await axios.post(url, data, header)
-    console.log(res)
+}
+
+export async function userSignUp(data) {
+    try {
+        const url = `${DEV_URL}/users/signup`;
+        const header = {
+            'content-type': 'application/json',
+        };
+        const res = await axios.post(url, data, header);
+        return res;
+    } catch (error) {
+        console.error(`userApiService/userSignUp: Error occured : ${error}`);
+        return null;
+    }
 }

@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     userDetails: {},
     errorUser: false,
     isLoading: false,
-}
+};
 
 const userSlice = createSlice({
     name: 'users',
@@ -15,10 +15,8 @@ const userSlice = createSlice({
         getAllUsers: (state, action) => {},
         getUser: (state, action) => {},
     },
-})
+});
 
-export const { login, signup, getAllUsers, getUser } = userSlice.actions
+export const { login, signup, getAllUsers, getUser } = userSlice.actions;
 
-export default userSlice.reducer
-
-
+export default userSlice.reducer;

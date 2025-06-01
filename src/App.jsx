@@ -1,11 +1,11 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './App.css'
-import AppLayout from './features/UI/AppLayout'
-import Login, { action as loginAction } from './features/users/Login'
-import ErrorElement from './features/UI/ErrorElement'
-import SignUp from './features/users/SignUp'
-import Product from './features/products/Product'
-import Menu, { loader as getAllProducts } from './features/products/Menu'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './App.css';
+import AppLayout from './features/UI/AppLayout';
+import Login, { action as loginAction } from './features/users/Login';
+import ErrorElement from './features/UI/ErrorElement';
+import Signup, { action as signupAction } from './features/users/SignUp';
+import Product from './features/products/Product';
+import Menu, { loader as getAllProducts } from './features/products/Menu';
 
 const router = createBrowserRouter([
     {
@@ -24,8 +24,9 @@ const router = createBrowserRouter([
                     },
                     {
                         path: 'signup',
-                        element: <SignUp />,
+                        element: <Signup />,
                         errorElement: <ErrorElement />,
+                        action: signupAction,
                     },
                 ],
             },
@@ -47,14 +48,14 @@ const router = createBrowserRouter([
             },
         ],
     },
-])
+]);
 
 function App() {
     return (
         <div>
             <RouterProvider router={router} />
         </div>
-    )
+    );
 }
 
-export default App
+export default App;

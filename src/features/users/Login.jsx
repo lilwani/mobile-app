@@ -1,8 +1,8 @@
-import React from 'react'
-import { Form } from 'react-router-dom'
-import store from '../../store'
-import { userLogin } from '../../services/userApiServices'
-import { getAllProducts } from '../products/productsSlice'
+import React from 'react';
+import { Form } from 'react-router-dom';
+import store from '../../store';
+import { userLogin } from '../../services/userApiServices';
+import { getAllProducts } from '../products/productsSlice';
 
 export default function Login() {
     return (
@@ -37,16 +37,13 @@ export default function Login() {
                 </button>
             </Form>
         </div>
-    )
+    );
 }
 
 export async function action({ request, params }) {
-    const formData = await request.formData()
-
-    const data = Object.fromEntries(formData)
-    console.log(data)
-    // const res = await userLogin()
-    // console.log(res)
-    store.dispatch(getAllProducts())
-    
+    console.log('inside action signup');
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+    console.log(data);
+    store.dispatch(getAllProducts());
 }
