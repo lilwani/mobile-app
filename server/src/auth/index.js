@@ -7,16 +7,56 @@ export default function verify(req, res, next) {
         const auth = req.headers.authorization;
         if (auth) {
             const userToken = auth.split(' ')[1];
-            const result = jwt.verify(userToken, process.env.SECRET_KEY);
-            console.log(result);
+            const result = jwt.verify(userToken, process.env.SECRET_ACC_KEY);
+            req.user = result;
             next();
         } else {
-            res.status(401).json({
-                message: 'You do not have authorization !',
+            return res.status(401).json({
+                message: {
+                    isError: true,
+                    errorMessage: 'No token received !',
+                },
             });
         }
     } catch (error) {
         console.log(`auth/verify(): Error while verifying token - ${error}`);
+        return res.status(401).json({
+            message: {
+                isError: true,
+                errorMessage: error,
+            },
+        });
     }
 }
 
+export const generateAccessToken = (user) => {
+    try {
+        const accessToken = jwt.sign(
+            { id: user.id },
+            process.env.SECRET_ACC_KEY,
+            {
+                expiresIn: '20s',
+            },
+        );
+        return accessToken;
+    } catch (error) {
+        console.error(`auth/generateAccessToken : Error occured : ${error}`);
+        throw Error(error);
+    }
+};
+
+export const generateRefreshToken = (user) => {
+    try {
+        const refreshToken = jwt.sign(
+            { id: user.id },
+            process.env.SECRET_REF_KEY,
+            {
+                expiresIn: '40s',
+            },
+        );
+        return refreshToken;
+    } catch (error) {
+        console.error(`auth/generateRefreshToken : Error occured : ${error}`);
+        throw Error(error);
+    }
+};

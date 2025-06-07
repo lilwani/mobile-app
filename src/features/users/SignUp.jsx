@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form } from 'react-router-dom';
-import { Button } from 'flowbite-react';
 
 export default function SignUp() {
     return (

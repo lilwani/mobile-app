@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import verify from '../auth/index.js';
 
 const productsDB = [
     {
@@ -8,6 +9,7 @@ const productsDB = [
         launchDate: '01-12-2023',
         price: '55000',
         img: 'S24',
+        adminId: 1,
     },
     {
         id: 2,
@@ -16,6 +18,7 @@ const productsDB = [
         launchDate: '01-15-2023',
         price: '58000',
         img: 'S24+',
+        adminId: 1,
     },
     {
         id: 3,
@@ -24,6 +27,7 @@ const productsDB = [
         launchDate: '05-10-2023',
         price: '98000',
         img: 'S25Ultra',
+        adminId: 1,
     },
     {
         id: 4,
@@ -32,6 +36,7 @@ const productsDB = [
         launchDate: '04-27-2023',
         price: '105000',
         img: 'SFlip6',
+        adminId: 1,
     },
     {
         id: 5,
@@ -40,6 +45,7 @@ const productsDB = [
         launchDate: '08-11-2023',
         price: '110000',
         img: 'SFold',
+        adminId: 1,
     },
     {
         id: 6,
@@ -48,6 +54,7 @@ const productsDB = [
         launchDate: '10-12-2024',
         price: '60000',
         img: 'MEdge60',
+        adminId: 2,
     },
     {
         id: 7,
@@ -56,6 +63,7 @@ const productsDB = [
         launchDate: '10-04-2024',
         price: '45000',
         img: 'MRazor40',
+        adminId: 2,
     },
     {
         id: 8,
@@ -64,6 +72,7 @@ const productsDB = [
         launchDate: '10-18-2022',
         price: '25000',
         img: 'G4A',
+        adminId: 3,
     },
     {
         id: 9,
@@ -72,6 +81,7 @@ const productsDB = [
         launchDate: '05-05-2023',
         price: '33000',
         img: 'G6A',
+        adminId: 3,
     },
     {
         id: 10,
@@ -80,6 +90,7 @@ const productsDB = [
         launchDate: '18-07-2024',
         price: '50000',
         img: 'G8',
+        adminId: 3,
     },
     {
         id: 11,
@@ -88,6 +99,7 @@ const productsDB = [
         launchDate: '01-12-2024',
         price: '62000',
         img: 'G8Pro',
+        adminId: 3,
     },
     {
         id: 12,
@@ -96,15 +108,33 @@ const productsDB = [
         launchDate: '01-08-2024',
         price: '95000',
         img: 'G9ProXL',
+        adminId: 3,
     },
 ];
 
-const adminProducts = [
-    
-]
-
 const products = Router();
 
-products.get('/', (req, res) => {});
+products.get('/:id', verify, (req, res) => {
+    try {
+        console.log('Inside products');
+        const prodsOfAdmin = productsDB.filter(
+            (item) => item.adminId == `${req.params.id}`,
+        );
+        if (prodsOfAdmin.length) {
+            res.status(200).send({
+                message: { isError: false, data: prodsOfAdmin },
+            });
+        } else {
+            res.status(500).json({
+                message: { isError: true, errorMessage: 'No Products found' },
+            });
+        }
+    } catch (error) {
+        console.error(`products/get/id: Error occured : ${error}`);
+        return res.status(500).json({
+            message: { isError: true, errorMessage: error },
+        });
+    }
+});
 
 export default products;
