@@ -43,6 +43,7 @@ users.post('/login', (req, res) => {
     try {
         console.log(`Inside /login path`);
         const { username, password } = req.body;
+        console.log(`req in login is ${JSON.stringify(req.body)}`);
         let userIndex = null;
         let user = null;
         for (const index of usersDB.keys()) {
@@ -68,6 +69,8 @@ users.post('/login', (req, res) => {
                     isError: false,
                     data: {
                         userName: usersDB[userIndex]['userName'],
+                        userId: usersDB[userIndex]['id'],
+                        isAdmin: usersDB[userIndex]['isAdmin'],
                         token: accessToken,
                     },
                 },
@@ -113,7 +116,12 @@ users.post('/signup', (req, res) => {
         return res.status(200).json({
             message: {
                 isError: false,
-                data: { userName: username, token: accessToken },
+                data: {
+                    userName: username,
+                    userId: nextUserID,
+                    isAdmin: makeAdmin,
+                    token: accessToken,
+                },
             },
         });
     } catch (error) {

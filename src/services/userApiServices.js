@@ -7,11 +7,13 @@ export async function userLogin(data) {
         const header = {
             'content-type': 'application/json',
         };
+        console.log(`Make backend call`);
         const res = await axios.post(url, data, header);
-        return res;
+        console.log(`APi response of login is ${JSON.stringify(res)}`);
+        return res?.data;
     } catch (error) {
         console.error(`userApiService/userLogin: Error occured : ${error}`);
-        return null;
+        return error?.message ?? 'Unexpected error in userLogin';
     }
 }
 
@@ -22,9 +24,9 @@ export async function userSignUp(data) {
             'content-type': 'application/json',
         };
         const res = await axios.post(url, data, header);
-        return res;
+        return res?.data;
     } catch (error) {
         console.error(`userApiService/userSignUp: Error occured : ${error}`);
-        return null;
+        return error?.message ?? 'Unexpected error in userSignUp';
     }
 }

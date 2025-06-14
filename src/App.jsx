@@ -34,7 +34,7 @@ const router = createBrowserRouter([
                 path: 'products',
                 children: [
                     {
-                        path: 'menu',
+                        path: 'menu/:id',
                         element: <Menu />,
                         errorElement: <ErrorElement />,
                         loader: getAllProducts,
