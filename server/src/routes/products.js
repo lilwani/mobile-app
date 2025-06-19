@@ -114,12 +114,27 @@ const productsDB = [
 
 const products = Router();
 
-products.get('/:id', verify, (req, res) => {
+products.get('/all', verify, (req, res) => {
+    try {
+        console.log('Inside products');
+        res.status(200).send({
+            message: { isError: false, data: productsDB },
+        });
+    } catch (error) {
+        console.error(`products/get/all: Error occured : ${error}`);
+        return res.status(500).json({
+            message: { isError: true, errorMessage: error },
+        });
+    }
+});
+
+products.get('/admin/:id', verify, (req, res) => {
     try {
         console.log('Inside products');
         const prodsOfAdmin = productsDB.filter(
             (item) => item.adminId == `${req.params.id}`,
         );
+        console.log(` Admin prods are - ${JSON.stringify(prodsOfAdmin)}`);
         if (prodsOfAdmin.length) {
             res.status(200).send({
                 message: { isError: false, data: prodsOfAdmin },

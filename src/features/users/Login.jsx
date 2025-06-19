@@ -2,7 +2,6 @@ import React from 'react';
 import { Form, redirect } from 'react-router-dom';
 import store from '../../store';
 import { userLogin } from '../../services/userApiServices';
-import { getAllProducts } from '../products/productsSlice';
 import { login, setUserError } from './userSlice';
 
 export default function Login() {
@@ -65,7 +64,7 @@ export async function action({ request, params }) {
                 store.dispatch(setUserError(payload));
                 return true;
             }
-            const payload = { userData };
+            const payload = { ...userData };
             console.log(`Set the uesr data in slice`);
             store.dispatch(login(payload));
             console.log(`Redirect to products`);

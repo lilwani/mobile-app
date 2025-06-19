@@ -1,10 +1,10 @@
-import React from 'react'
-import { Card } from 'flowbite-react'
+import React from 'react';
+import { Card } from 'flowbite-react';
 
 export default function Item({ product }) {
     return (
         <li className="my-4 mx-10">
-            <Card className="max-w-sm bg-slate-500 rounded-2xl w-[400px]">
+            <Card className="max-w-sm bg-slate-500 rounded-2xl w-[400px] cursor-pointer hover:bg-slate-700">
                 <img
                     src={`/${product.img}.jpg`}
                     className="rounded-lg w-[150px] h-[150px] items-center"
@@ -19,5 +19,5 @@ export default function Item({ product }) {
                 </div>
             </Card>
         </li>
-    )
+    );
 }

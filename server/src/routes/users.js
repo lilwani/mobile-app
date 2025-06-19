@@ -31,6 +31,14 @@ export const usersDB = [
         token: '',
         adminId: 3,
     },
+    {
+        id: 103,
+        userName: 'aam',
+        password: 'aam@2025',
+        isAdmin: false,
+        token: '',
+        adminId: null,
+    },
 ];
 
 const users = Router();
@@ -71,6 +79,7 @@ users.post('/login', (req, res) => {
                         userName: usersDB[userIndex]['userName'],
                         userId: usersDB[userIndex]['id'],
                         isAdmin: usersDB[userIndex]['isAdmin'],
+                        adminId: usersDB[userIndex]['adminId'] ?? null,
                         token: accessToken,
                     },
                 },
@@ -120,6 +129,7 @@ users.post('/signup', (req, res) => {
                     userName: username,
                     userId: nextUserID,
                     isAdmin: makeAdmin,
+                    adminId: usersDB[nextUserID]['adminId'] ?? null,
                     token: accessToken,
                 },
             },

@@ -12,7 +12,7 @@ const userSlice = createSlice({
     initialState: initialState,
     reducers: {
         login: (state, action) => {
-            state.userDetails = { ...action.payload.data };
+            state.userDetails = { ...action.payload };
         },
         signup: (state, action) => {},
         getAllUsers: (state, action) => {},
@@ -27,5 +27,6 @@ const userSlice = createSlice({
 export const { login, signup, getAllUsers, getUser, setUserError } =
     userSlice.actions;
 
-export default userSlice.reducer;
+export const getUserToken = (state) => state.users.userDetails;
 
+export default userSlice.reducer;
