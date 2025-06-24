@@ -1,9 +1,11 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { Provider } from 'react-redux'
-import store from './store.js'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.jsx';
+import { Provider } from 'react-redux';
+import setupStore from './store.js';
+
+const store = setupStore();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -11,4 +13,4 @@ createRoot(document.getElementById('root')).render(
       <App />
     </Provider>
   </StrictMode>,
-)
+);
