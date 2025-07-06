@@ -15,8 +15,9 @@ const userSlice = createSlice({
             state.userDetails = { ...action.payload };
         },
         signup: (state, action) => {},
-        getAllUsers: (state, action) => {},
-        getUser: (state, action) => {},
+        setAccessToken: (state, action) => {
+            state.userDetails.token = action.payload.token;
+        },
         setUserError: (state, action) => {
             state.errorUser = action.payload.isError;
             state.errorMessage = action.payload.errorMessage;
@@ -24,7 +25,7 @@ const userSlice = createSlice({
     },
 });
 
-export const { login, signup, getAllUsers, getUser, setUserError } =
+export const { login, signup, setAccessToken, setUserError } =
     userSlice.actions;
 
 export const getUserToken = (state) => state.users.userDetails;

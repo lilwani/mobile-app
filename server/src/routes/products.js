@@ -32,7 +32,7 @@ const productsDB = [
     {
         id: 4,
         brand: 'Samsung',
-        model: 'Samsung Galaxy SFlip 6',
+        model: 'Samsung Galaxy Z Flip5',
         launchDate: '04-27-2023',
         price: '105000',
         img: 'SFlip6',
@@ -146,6 +146,17 @@ products.get('/admin/:id', verify, (req, res) => {
         }
     } catch (error) {
         console.error(`products/get/id: Error occured : ${error}`);
+        return res.status(500).json({
+            message: { isError: true, errorMessage: error },
+        });
+    }
+});
+
+products.get('/item/:id', (req, res) => {
+    try {
+        console.log('Inside products/item/:id');
+    } catch (error) {
+        console.error(`products/get/item/:id: Error occured : ${error}`);
         return res.status(500).json({
             message: { isError: true, errorMessage: error },
         });

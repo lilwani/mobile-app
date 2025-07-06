@@ -1,14 +1,15 @@
-import axios from 'axios';
+import axios from '../utils';
 import { DEV_URL } from '../constants';
 
 export async function userLogin(data) {
     try {
-        const url = `${DEV_URL}/users/login`;
-        const header = {
-            'content-type': 'application/json',
-        };
+        // const url = `${DEV_URL}/users/login`;
+        // const header = {
+        //     'content-type': 'application/json',
+        // };
         console.log(`Make backend call`);
-        const res = await axios.post(url, data, header);
+        // const res = await axios.post(`/users/login`, data, header);
+        const res = await axios.post(`/users/login`, data);
         console.log(`APi response of login is ${JSON.stringify(res)}`);
         return res?.data;
     } catch (error) {

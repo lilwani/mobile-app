@@ -37,7 +37,7 @@ export const generateAccessToken = (user) => {
             { id: user.id },
             process.env.SECRET_ACC_KEY,
             {
-                expiresIn: '20s',
+                expiresIn: process.env.ACC_TOKEN_EXPIRY || '5s',
             },
         );
         return accessToken;
@@ -53,7 +53,7 @@ export const generateRefreshToken = (user) => {
             { id: user.id },
             process.env.SECRET_REF_KEY,
             {
-                expiresIn: '40s',
+                expiresIn: process.env.REF_TOKEN_EXPIRY || '10s',
             },
         );
         return refreshToken;

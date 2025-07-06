@@ -1,61 +1,14 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import AppLayout from './features/UI/AppLayout';
-import Login, { action as loginAction } from './features/users/Login';
-import ErrorElement from './features/UI/ErrorElement';
-import Signup, { action as signupAction } from './features/users/SignUp';
-import Product from './features/products/Product';
-import Menu, { loader as getAllProducts } from './features/products/Menu';
+import Header from './features/UI/Header';
+import { Outlet } from 'react-router-dom';
+import Footer from './features/UI/Footer';
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <AppLayout />,
-        errorElement: <ErrorElement />,
-        children: [
-            {
-                path: 'users',
-                children: [
-                    {
-                        path: 'login',
-                        element: <Login />,
-                        errorElement: <ErrorElement />,
-                        action: loginAction,
-                    },
-                    {
-                        path: 'signup',
-                        element: <Signup />,
-                        errorElement: <ErrorElement />,
-                        action: signupAction,
-                    },
-                ],
-            },
-            {
-                path: 'products',
-                children: [
-                    {
-                        path: 'menu/:id',
-                        element: <Menu />,
-                        errorElement: <ErrorElement />,
-                        loader: getAllProducts,
-                    },
-                    {
-                        path: ':pId',
-                        element: <Product />,
-                        errorElement: <ErrorElement />,
-                    },
-                ],
-            },
-        ],
-    },
-]);
-
-function App() {
+export default function App() {
     return (
-        <div>
-            <RouterProvider router={router} />
+        <div className="flex min-h-screen items-center flex-col justify-between p-2">
+            <Header />
+            <Outlet />
+            <Footer />
         </div>
     );
 }
-
-export default App;

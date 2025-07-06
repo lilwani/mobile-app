@@ -1,7 +1,7 @@
-import React from 'react'
-import { PhoneArrowDownLeftIcon } from '@heroicons/react/16/solid'
-import User from '../users/User'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { PhoneArrowDownLeftIcon } from '@heroicons/react/16/solid';
+import User from '../users/User';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     return (
@@ -16,5 +16,5 @@ export default function Header() {
             </div>
             <User />
         </header>
-    )
+    );
 }

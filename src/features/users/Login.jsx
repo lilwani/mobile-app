@@ -28,7 +28,7 @@ export default function Login() {
                         name="password"
                         id="password"
                         type="password"
-                        placeholder="JohnDoe@gmail.com"
+                        placeholder="JohnDoe1234"
                         className="placeholder-gray-300 border-1 rounded-lg w-80 text-center py-2"
                     />
                 </div>
@@ -40,7 +40,7 @@ export default function Login() {
     );
 }
 
-export async function action({ request, params }) {
+export async function action({ request }) {
     try {
         console.log('inside action login');
         const formData = await request.formData();
@@ -68,6 +68,7 @@ export async function action({ request, params }) {
             console.log(`Set the uesr data in slice`);
             store.dispatch(login(payload));
             console.log(`Redirect to products`);
+            const x = store.getState();
             return redirect(
                 `/products/menu/${userData['userId']}?isAdmin=${userData['isAdmin']}`,
             );
